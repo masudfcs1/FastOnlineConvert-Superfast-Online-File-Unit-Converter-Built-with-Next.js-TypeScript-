@@ -523,33 +523,762 @@
 // }
 
 
+// "use client"
+
+// import { useState } from "react"
+// import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+// import { Button } from "@/components/ui/button"
+// import { Input } from "@/components/ui/input"
+// import { Badge } from "@/components/ui/badge"
+// import {
+//   FileText,
+//   ImageIcon,
+//   Video,
+//   Music,
+//   Archive,
+//   Zap,
+//   Shield,
+//   Cloud,
+//   Check,
+//   Star,
+//   Upload,
+//   Users,
+//   Globe,
+//   Sparkles,
+//   Play,
+//   ChevronDown,
+//   Menu,
+//   X,
+// } from "lucide-react"
+
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.1,
+//       delayChildren: 0.3,
+//     },
+//   },
+// }
+
+// const itemVariants = {
+//   hidden: { y: 20, opacity: 0 },
+//   visible: {
+//     y: 0,
+//     opacity: 1,
+//     transition: {
+//       type: "spring",
+//       stiffness: 100,
+//     },
+//   },
+// } as const
+
+// import { easeInOut } from "framer-motion"
+
+// const floatingAnimation = {
+//   y: [-10, 10, -10],
+//   transition: {
+//     duration: 6,
+//     repeat: Number.POSITIVE_INFINITY,
+//     ease: easeInOut,
+//   },
+// }
+
+// export default function FastOnlineConvertLanding() {
+//   const [email, setEmail] = useState("")
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const { scrollYProgress } = useScroll()
+//   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+//   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+//   const fileTypes = [
+//     {
+//       icon: FileText,
+//       name: "Documents",
+//       formats: ["PDF", "DOCX", "TXT", "RTF", "ODT"],
+//       color: "from-blue-400 to-cyan-400",
+//       bgColor: "from-blue-500/10 to-cyan-500/10",
+//     },
+//     {
+//       icon: ImageIcon,
+//       name: "Images",
+//       formats: ["JPG", "PNG", "GIF", "SVG", "WebP"],
+//       color: "from-purple-400 to-pink-400",
+//       bgColor: "from-purple-500/10 to-pink-500/10",
+//     },
+//     {
+//       icon: Video,
+//       name: "Videos",
+//       formats: ["MP4", "AVI", "MOV", "MKV", "WebM"],
+//       color: "from-green-400 to-emerald-400",
+//       bgColor: "from-green-500/10 to-emerald-500/10",
+//     },
+//     {
+//       icon: Music,
+//       name: "Audio",
+//       formats: ["MP3", "WAV", "FLAC", "AAC", "OGG"],
+//       color: "from-orange-400 to-red-400",
+//       bgColor: "from-orange-500/10 to-red-500/10",
+//     },
+//     {
+//       icon: Archive,
+//       name: "Archives",
+//       formats: ["ZIP", "RAR", "7Z", "TAR", "GZ"],
+//       color: "from-indigo-400 to-purple-400",
+//       bgColor: "from-indigo-500/10 to-purple-500/10",
+//     },
+//   ]
+
+//   const features = [
+//     {
+//       icon: Zap,
+//       title: "Quantum Speed",
+//       description: "AI-powered conversion engine processes files at unprecedented speeds",
+//       gradient: "from-yellow-400 to-orange-500",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Military Grade Security",
+//       description: "End-to-end encryption with zero-knowledge architecture",
+//       gradient: "from-green-400 to-blue-500",
+//     },
+//     {
+//       icon: Cloud,
+//       title: "Edge Computing",
+//       description: "Global CDN ensures optimal performance from anywhere",
+//       gradient: "from-purple-400 to-pink-500",
+//     },
+//     {
+//       icon: Globe,
+//       title: "Universal Compatibility",
+//       description: "Support for 500+ file formats across all platforms",
+//       gradient: "from-blue-400 to-indigo-500",
+//     },
+//   ]
+
+//   const plans = [
+//     {
+//       name: "Starter",
+//       price: "Free",
+//       period: "forever",
+//       description: "Perfect for personal use",
+//       features: ["10 conversions/day", "Files up to 25MB", "Basic formats", "Standard speed"],
+//       popular: false,
+//       gradient: "from-gray-600 to-gray-800",
+//     },
+//     {
+//       name: "Professional",
+//       price: "$12",
+//       period: "per month",
+//       description: "For power users",
+//       features: [
+//         "Unlimited conversions",
+//         "Files up to 1GB",
+//         "All formats",
+//         "Lightning speed",
+//         "Batch processing",
+//         "API access",
+//         "Priority support",
+//       ],
+//       popular: true,
+//       gradient: "from-blue-600 to-purple-600",
+//     },
+//     {
+//       name: "Enterprise",
+//       price: "Custom",
+//       period: "contact us",
+//       description: "For large organizations",
+//       features: [
+//         "Everything in Pro",
+//         "Unlimited file size",
+//         "Custom integrations",
+//         "Dedicated support",
+//         "SLA guarantee",
+//         "White-label solution",
+//       ],
+//       popular: false,
+//       gradient: "from-purple-600 to-pink-600",
+//     },
+//   ]
+
+//   const stats = [
+//     { number: "50M+", label: "Files Converted", icon: FileText },
+//     { number: "2M+", label: "Active Users", icon: Users },
+//     { number: "99.99%", label: "Uptime", icon: Shield },
+//     { number: "500+", label: "Formats", icon: Globe },
+//   ]
+
+//   // Floating particles effect
+//   const particles = Array.from({ length: 50 }, (_, i) => ({
+//     id: i,
+//     x: Math.random() * 100,
+//     y: Math.random() * 100,
+//     size: Math.random() * 4 + 1,
+//     duration: Math.random() * 20 + 10,
+//   }))
+
+//   return (
+//     <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+//       {/* Animated Background */}
+//       <div className="fixed inset-0 z-0">
+//         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20" />
+//         {particles.map((particle) => (
+//           <motion.div
+//             key={particle.id}
+//             className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
+//             style={{
+//               left: `${particle.x}%`,
+//               top: `${particle.y}%`,
+//               width: `${particle.size}px`,
+//               height: `${particle.size}px`,
+//             }}
+//             animate={{
+//               y: [0, -100, 0],
+//               opacity: [0, 1, 0],
+//             }}
+//             transition={{
+//               duration: particle.duration,
+//               repeat: Number.POSITIVE_INFINITY,
+//               ease: "linear",
+//             }}
+//           />
+//         ))}
+//       </div>
+
+//       {/* Header */}
+//       <motion.header
+//         className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 z-50"
+//         initial={{ y: -100 }}
+//         animate={{ y: 0 }}
+//         transition={{ duration: 0.8, type: "spring" }}
+//       >
+//         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+//           <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.05 }}>
+//             <div className="relative">
+//               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+//                 <Zap className="w-6 h-6 text-white" />
+//               </div>
+//               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-50 animate-pulse" />
+//             </div>
+//             <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+//               FastOnlineConvert
+//             </span>
+//           </motion.div>
+
+//           <nav className="hidden lg:flex items-center space-x-8">
+//             {["Features", "Pricing", "API", "About"].map((item, index) => (
+//               <motion.a
+//                 key={item}
+//                 href={`#${item.toLowerCase()}`}
+//                 className="text-gray-300 hover:text-white transition-colors relative group"
+//                 whileHover={{ scale: 1.1 }}
+//                 initial={{ opacity: 0, y: -20 }}
+//                 animate={{ opacity: 1, y: 0 }}
+//                 transition={{ delay: index * 0.1 }}
+//               >
+//                 {item}
+//                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-300" />
+//               </motion.a>
+//             ))}
+//           </nav>
+
+//           <div className="flex items-center space-x-4">
+//             <Button variant="ghost" className="hidden lg:block text-gray-300 hover:text-white hover:bg-gray-800/50">
+//               Sign In
+//             </Button>
+//             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+//               <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25">
+//                 Get Started
+//               </Button>
+//             </motion.div>
+//             <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+//               {isMenuOpen ? <X /> : <Menu />}
+//             </Button>
+//           </div>
+//         </div>
+
+//         {/* Mobile Menu */}
+//         <AnimatePresence>
+//           {isMenuOpen && (
+//             <motion.div
+//               initial={{ opacity: 0, height: 0 }}
+//               animate={{ opacity: 1, height: "auto" }}
+//               exit={{ opacity: 0, height: 0 }}
+//               className="lg:hidden bg-gray-800/95 backdrop-blur-xl border-t border-gray-700/50"
+//             >
+//               <div className="container mx-auto px-6 py-4 space-y-4">
+//                 {["Features", "Pricing", "API", "About"].map((item) => (
+//                   <a
+//                     key={item}
+//                     href={`#${item.toLowerCase()}`}
+//                     className="block text-gray-300 hover:text-white transition-colors"
+//                     onClick={() => setIsMenuOpen(false)}
+//                   >
+//                     {item}
+//                   </a>
+//                 ))}
+//               </div>
+//             </motion.div>
+//           )}
+//         </AnimatePresence>
+//       </motion.header>
+
+//       {/* Hero Section */}
+//       <section className="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
+//         <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+//           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+//           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+//         </motion.div>
+
+//         <div className="container mx-auto relative z-10">
+//           <motion.div
+//             variants={containerVariants}
+//             initial="hidden"
+//             animate="visible"
+//             className="max-w-6xl mx-auto text-center"
+//           >
+//             <motion.div variants={itemVariants}>
+//               <Badge className="mb-8 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30 backdrop-blur-sm">
+//                 <Sparkles className="w-4 h-4 mr-2" />
+//                 Next-Generation File Conversion
+//               </Badge>
+//             </motion.div>
+
+//             <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black mb-8 leading-tight">
+//               <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+//                 Convert Files
+//               </span>
+//               <br />
+//               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+//                 At Light Speed
+//               </span>
+//             </motion.h1>
+
+//             <motion.p
+//               variants={itemVariants}
+//               className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+//             >
+//               Experience the future of file conversion. Powered by AI, secured by quantum encryption, and optimized for
+//               the modern web.
+//             </motion.p>
+
+//             <motion.div
+//               variants={itemVariants}
+//               className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+//             >
+//               <motion.div
+//                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
+//                 whileTap={{ scale: 0.95 }}
+//               >
+//                 <Button
+//                   size="lg"
+//                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl shadow-blue-500/25 border border-blue-500/20"
+//                 >
+//                   <Upload className="w-6 h-6 mr-3" />
+//                   Start Converting
+//                 </Button>
+//               </motion.div>
+//               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+//                 <Button
+//                   variant="outline"
+//                   size="lg"
+//                   className="border-2 border-gray-600 hover:border-blue-400 bg-gray-800/50 backdrop-blur-sm px-12 py-6 text-xl font-bold rounded-2xl hover:bg-gray-700/50"
+//                 >
+//                   <Play className="w-6 h-6 mr-3" />
+//                   Watch Demo
+//                 </Button>
+//               </motion.div>
+//             </motion.div>
+
+//             {/* Animated Stats */}
+//             <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+//               {stats.map((stat, index) => (
+//                 <motion.div
+//                   key={index}
+//                   className="relative group"
+//                   whileHover={{ scale: 1.1, y: -5 }}
+//                   animate={floatingAnimation}
+//                   transition={{ delay: index * 0.2 }}
+//                 >
+//                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
+//                   <div className="relative bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 text-center">
+//                     <stat.icon className="w-8 h-8 mx-auto mb-3 text-blue-400" />
+//                     <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+//                       {stat.number}
+//                     </div>
+//                     <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+//                   </div>
+//                 </motion.div>
+//               ))}
+//             </motion.div>
+//           </motion.div>
+//         </div>
+
+//         {/* Scroll Indicator */}
+//         <motion.div
+//           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+//           animate={{ y: [0, 10, 0] }}
+//           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+//         >
+//           <ChevronDown className="w-8 h-8 text-gray-400" />
+//         </motion.div>
+//       </section>
+
+//       {/* File Types Section */}
+//       <section className="py-20 relative">
+//         <div className="container mx-auto px-6">
+//           <motion.div
+//             initial={{ opacity: 0, y: 50 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//             className="text-center mb-16"
+//           >
+//             <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+//               Universal Format Support
+//             </h2>
+//             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+//               Convert between any file format with our advanced AI-powered engine
+//             </p>
+//           </motion.div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+//             {fileTypes.map((type, index) => (
+//               <motion.div
+//                 key={index}
+//                 initial={{ opacity: 0, y: 50 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.6, delay: index * 0.1 }}
+//                 whileHover={{ scale: 1.05, y: -10 }}
+//                 viewport={{ once: true }}
+//                 className="relative group"
+//               >
+//                 <div
+//                   className={`absolute inset-0 bg-gradient-to-r ${type.bgColor} rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300`}
+//                 />
+//                 <div className="relative bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8 text-center hover:border-gray-600/50 transition-all duration-300">
+//                   <div
+//                     className={`w-20 h-20 bg-gradient-to-r ${type.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}
+//                   >
+//                     <type.icon className="w-10 h-10 text-white" />
+//                   </div>
+//                   <h3 className="text-xl font-bold text-white mb-4">{type.name}</h3>
+//                   <div className="space-y-1">
+//                     {type.formats.map((format, formatIndex) => (
+//                       <motion.div
+//                         key={format}
+//                         initial={{ opacity: 0, x: -20 }}
+//                         whileInView={{ opacity: 1, x: 0 }}
+//                         transition={{ delay: formatIndex * 0.1 }}
+//                         className="text-sm text-gray-400 bg-gray-700/50 rounded-lg px-3 py-1 inline-block mr-2 mb-2"
+//                       >
+//                         {format}
+//                       </motion.div>
+//                     ))}
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Features Section */}
+//       <section id="features" className="py-20 relative">
+//         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-purple-900/10" />
+//         <div className="container mx-auto px-6 relative">
+//           <motion.div
+//             initial={{ opacity: 0, y: 50 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//             className="text-center mb-16"
+//           >
+//             <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+//               Cutting-Edge Technology
+//             </h2>
+//             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+//               Built with the latest innovations in cloud computing and artificial intelligence
+//             </p>
+//           </motion.div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+//             {features.map((feature, index) => (
+//               <motion.div
+//                 key={index}
+//                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+//                 whileInView={{ opacity: 1, x: 0 }}
+//                 transition={{ duration: 0.8, delay: index * 0.2 }}
+//                 whileHover={{ scale: 1.02, y: -5 }}
+//                 viewport={{ once: true }}
+//                 className="relative group"
+//               >
+//                 <div
+//                   className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-10 rounded-3xl blur-xl group-hover:opacity-20 transition-all duration-300`}
+//                 />
+//                 <div className="relative bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8 hover:border-gray-600/50 transition-all duration-300">
+//                   <div
+//                     className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
+//                   >
+//                     <feature.icon className="w-8 h-8 text-white" />
+//                   </div>
+//                   <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
+//                   <p className="text-gray-400 text-lg leading-relaxed">{feature.description}</p>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Pricing Section */}
+//       <section id="pricing" className="py-20 relative">
+//         <div className="container mx-auto px-6">
+//           <motion.div
+//             initial={{ opacity: 0, y: 50 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//             className="text-center mb-16"
+//           >
+//             <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+//               Choose Your Power Level
+//             </h2>
+//             <p className="text-xl text-gray-400 max-w-3xl mx-auto">Flexible pricing that scales with your needs</p>
+//           </motion.div>
+
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+//             {plans.map((plan, index) => (
+//               <motion.div
+//                 key={index}
+//                 initial={{ opacity: 0, y: 50 }}
+//                 whileInView={{ opacity: 1, y: 0 }}
+//                 transition={{ duration: 0.6, delay: index * 0.2 }}
+//                 whileHover={{ scale: 1.02, y: -10 }}
+//                 viewport={{ once: true }}
+//                 className={`relative group ${plan.popular ? "md:-mt-8" : ""}`}
+//               >
+//                 {plan.popular && (
+//                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+//                     <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 text-sm font-bold">
+//                       <Star className="w-4 h-4 mr-2" />
+//                       Most Popular
+//                     </Badge>
+//                   </div>
+//                 )}
+
+//                 <div
+//                   className={`absolute inset-0 bg-gradient-to-r ${plan.gradient} opacity-10 rounded-3xl blur-xl group-hover:opacity-20 transition-all duration-300`}
+//                 />
+//                 <div
+//                   className={`relative bg-gray-800/80 backdrop-blur-sm border-2 rounded-3xl p-8 transition-all duration-300 ${
+//                     plan.popular
+//                       ? "border-blue-500/50 shadow-2xl shadow-blue-500/20"
+//                       : "border-gray-700/50 hover:border-gray-600/50"
+//                   }`}
+//                 >
+//                   <div className="text-center mb-8">
+//                     <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
+//                     <p className="text-gray-400 mb-6">{plan.description}</p>
+//                     <div className="mb-6">
+//                       <span className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+//                         {plan.price}
+//                       </span>
+//                       {plan.period !== "contact us" && <span className="text-gray-400 ml-2">/{plan.period}</span>}
+//                     </div>
+//                   </div>
+
+//                   <ul className="space-y-4 mb-8">
+//                     {plan.features.map((feature, featureIndex) => (
+//                       <motion.li
+//                         key={featureIndex}
+//                         initial={{ opacity: 0, x: -20 }}
+//                         whileInView={{ opacity: 1, x: 0 }}
+//                         transition={{ delay: featureIndex * 0.1 }}
+//                         className="flex items-center"
+//                       >
+//                         <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+//                         <span className="text-gray-300">{feature}</span>
+//                       </motion.li>
+//                     ))}
+//                   </ul>
+
+//                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+//                     <Button
+//                       className={`w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 ${
+//                         plan.popular
+//                           ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25"
+//                           : "bg-gray-700 hover:bg-gray-600 text-white"
+//                       }`}
+//                     >
+//                       {plan.name === "Starter" ? "Get Started Free" : `Choose ${plan.name}`}
+//                     </Button>
+//                   </motion.div>
+//                 </div>
+//               </motion.div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* CTA Section */}
+//       <section className="py-20 relative overflow-hidden">
+//         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20" />
+//         <div className="absolute inset-0">
+//           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+//           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+//         </div>
+
+//         <div className="container mx-auto px-6 text-center relative">
+//           <motion.div
+//             initial={{ opacity: 0, y: 50 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             viewport={{ once: true }}
+//             className="max-w-4xl mx-auto"
+//           >
+//             <h2 className="text-5xl font-bold text-white mb-8">Ready to Experience the Future?</h2>
+//             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+//               Join millions of users who have revolutionized their workflow with FastOnlineConvert
+//             </p>
+
+//             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto mb-8">
+//               <Input
+//                 type="email"
+//                 placeholder="Enter your email address"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400 backdrop-blur-sm rounded-xl py-4 px-6 text-lg"
+//               />
+//               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+//                 <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-bold px-8 py-4 text-lg rounded-xl shadow-lg shadow-blue-500/25 whitespace-nowrap">
+//                   Start Free Trial
+//                 </Button>
+//               </motion.div>
+//             </div>
+
+//             <p className="text-gray-400 text-sm">No credit card required • 14-day free trial • Cancel anytime</p>
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* Footer */}
+//       <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-gray-800/50 py-16">
+//         <div className="container mx-auto px-6">
+//           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+//             <div>
+//               <div className="flex items-center space-x-3 mb-6">
+//                 <div className="relative">
+//                   <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+//                     <Zap className="w-6 h-6 text-white" />
+//                   </div>
+//                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-50" />
+//                 </div>
+//                 <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+//                   FastOnlineConvert
+//                 </span>
+//               </div>
+//               <p className="text-gray-400 mb-6 leading-relaxed">
+//                 The most advanced file conversion platform on the planet. Powered by AI, secured by quantum encryption.
+//               </p>
+//               <div className="flex space-x-4">
+//                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
+//                   <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
+//                     <Users className="w-5 h-5 text-gray-400" />
+//                   </div>
+//                 </motion.div>
+//                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
+//                   <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors">
+//                     <Globe className="w-5 h-5 text-gray-400" />
+//                   </div>
+//                 </motion.div>
+//                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
+//                   <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
+//                     <Shield className="w-5 h-5 text-gray-400" />
+//                   </div>
+//                 </motion.div>
+//               </div>
+//             </div>
+
+//             {[
+//               {
+//                 title: "Product",
+//                 links: ["Features", "Pricing", "API", "Integrations", "Security", "Enterprise"],
+//               },
+//               {
+//                 title: "Resources",
+//                 links: ["Documentation", "Help Center", "Blog", "Status", "Changelog", "Community"],
+//               },
+//               {
+//                 title: "Company",
+//                 links: ["About", "Careers", "Press", "Partners", "Privacy", "Terms"],
+//               },
+//             ].map((section) => (
+//               <div key={section.title}>
+//                 <h4 className="font-bold text-white mb-6">{section.title}</h4>
+//                 <ul className="space-y-3">
+//                   {section.links.map((link) => (
+//                     <li key={link}>
+//                       <motion.a
+//                         href="#"
+//                         className="text-gray-400 hover:text-white transition-colors relative group"
+//                         whileHover={{ x: 5 }}
+//                       >
+//                         {link}
+//                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-300" />
+//                       </motion.a>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             ))}
+//           </div>
+
+//           <div className="border-t border-gray-800/50 pt-8 text-center">
+//             <p className="text-gray-400">
+//               &copy; {new Date().getFullYear()} FastOnlineConvert. All rights reserved. Built with ⚡ and 💜
+//             </p>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   )
+// }
+
+
 "use client"
 
-import { useState } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+import { AnimatePresence, easeInOut, motion, useScroll, useTransform } from "framer-motion"
 import {
-  FileText,
-  ImageIcon,
-  Video,
-  Music,
   Archive,
-  Zap,
-  Shield,
-  Cloud,
   Check,
+  ChevronDown,
+  Cloud,
+  FileText,
+  Globe,
+  HelpCircle,
+  Home,
+  ImageIcon,
+  Menu,
+  Moon,
+  Music,
+  Play,
+  Settings,
+  Shield,
+  Sparkles,
   Star,
+  Sun,
   Upload,
   Users,
-  Globe,
-  Sparkles,
-  Play,
-  ChevronDown,
-  Menu,
+  Video,
   X,
+  Zap,
 } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -574,7 +1303,6 @@ const itemVariants = {
   },
 } as const
 
-import { easeInOut } from "framer-motion"
 
 const floatingAnimation = {
   y: [-10, 10, -10],
@@ -588,9 +1316,40 @@ const floatingAnimation = {
 export default function FastOnlineConvertLanding() {
   const [email, setEmail] = useState("")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(true)
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === "dark")
+    }
+  }, [])
+
+  // Save theme to localStorage when changed
+  useEffect(() => {
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light")
+  }, [isDarkMode])
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode)
+  }
+
+  const themeClasses = {
+    bg: isDarkMode ? "bg-gray-900" : "bg-gray-50",
+    text: isDarkMode ? "text-white" : "text-gray-900",
+    textSecondary: isDarkMode ? "text-gray-300" : "text-gray-600",
+    textMuted: isDarkMode ? "text-gray-400" : "text-gray-500",
+    cardBg: isDarkMode ? "bg-gray-800/80" : "bg-white/80",
+    border: isDarkMode ? "border-gray-700/50" : "border-gray-200/50",
+    headerBg: isDarkMode ? "bg-gray-900/80" : "bg-white/80",
+    footerBg: isDarkMode ? "bg-gray-900/50" : "bg-gray-100/50",
+    inputBg: isDarkMode ? "bg-gray-800/50" : "bg-white/50",
+    buttonSecondary: isDarkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-gray-200 hover:bg-gray-300",
+  }
 
   const fileTypes = [
     {
@@ -709,6 +1468,14 @@ export default function FastOnlineConvertLanding() {
     { number: "500+", label: "Formats", icon: Globe },
   ]
 
+  const mobileMenuItems = [
+    { icon: Home, label: "Home", href: "#home" },
+    { icon: Zap, label: "Features", href: "#features" },
+    { icon: Star, label: "Pricing", href: "#pricing" },
+    { icon: Settings, label: "API", href: "#api" },
+    { icon: HelpCircle, label: "About", href: "#about" },
+  ]
+
   // Floating particles effect
   const particles = Array.from({ length: 50 }, (_, i) => ({
     id: i,
@@ -719,20 +1486,38 @@ export default function FastOnlineConvertLanding() {
   }))
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+    <motion.div
+      className={`min-h-screen transition-colors duration-500 overflow-hidden ${themeClasses.bg} ${themeClasses.text}`}
+      initial={false}
+      animate={{
+        backgroundColor: isDarkMode ? "#111827" : "#f9fafb",
+      }}
+    >
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20" />
+        <motion.div
+          className={`absolute inset-0 transition-all duration-500 ${
+            isDarkMode
+              ? "bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20"
+              : "bg-gradient-to-br from-blue-50 via-white to-purple-50"
+          }`}
+          animate={{
+            background: isDarkMode
+              ? "linear-gradient(to bottom right, #111827, #1e3a8a20, #7c2d9220)"
+              : "linear-gradient(to bottom right, #eff6ff, #ffffff, #faf5ff)",
+          }}
+          transition={{ duration: 0.5 }}
+        />
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
+            className={`absolute w-1 h-1 rounded-full ${isDarkMode ? "bg-blue-400/30" : "bg-blue-600/20"}`}
+            // style={{
+            //   left: `${particle.x}%`,
+            //   top: `${particle.y}%`,
+            //   width: `${particle.size}px`,
+            //   height: `${particle.size}px`,
+            // }}
             animate={{
               y: [0, -100, 0],
               opacity: [0, 1, 0],
@@ -748,7 +1533,7 @@ export default function FastOnlineConvertLanding() {
 
       {/* Header */}
       <motion.header
-        className="fixed top-0 w-full bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 z-50"
+        className={`fixed top-0 w-full backdrop-blur-xl border-b z-50 transition-all duration-500 ${themeClasses.headerBg} ${themeClasses.border}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, type: "spring" }}
@@ -771,7 +1556,7 @@ export default function FastOnlineConvertLanding() {
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-gray-300 hover:text-white transition-colors relative group"
+                className={`hover:text-blue-500 transition-colors relative group ${themeClasses.textSecondary}`}
                 whileHover={{ scale: 1.1 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -784,7 +1569,44 @@ export default function FastOnlineConvertLanding() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="hidden lg:block text-gray-300 hover:text-white hover:bg-gray-800/50">
+            {/* Theme Toggle Button */}
+            <motion.button
+              onClick={toggleTheme}
+              className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                isDarkMode
+                  ? "bg-gray-800/50 hover:bg-gray-700/50 text-yellow-400"
+                  : "bg-gray-200/50 hover:bg-gray-300/50 text-gray-700"
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={false}
+            >
+              <AnimatePresence mode="wait">
+                {isDarkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Sun className="w-5 h-5" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Moon className="w-5 h-5" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+
+            <Button variant="ghost" className={`hidden lg:block hover:bg-opacity-50 ${themeClasses.textSecondary}`}>
               Sign In
             </Button>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -792,32 +1614,109 @@ export default function FastOnlineConvertLanding() {
                 Get Started
               </Button>
             </motion.div>
-            <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
-            </Button>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`lg:hidden w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                isDarkMode ? "bg-gray-800/50 hover:bg-gray-700/50" : "bg-gray-200/50 hover:bg-gray-300/50"
+              }`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <AnimatePresence mode="wait">
+                {isMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="w-6 h-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="w-6 h-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Enhanced Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-gray-800/95 backdrop-blur-xl border-t border-gray-700/50"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className={`lg:hidden backdrop-blur-xl border-t overflow-hidden ${
+                isDarkMode ? "bg-gray-800/95 border-gray-700/50" : "bg-white/95 border-gray-200/50"
+              }`}
             >
-              <div className="container mx-auto px-6 py-4 space-y-4">
-                {["Features", "Pricing", "API", "About"].map((item) => (
-                  <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
-                    className="block text-gray-300 hover:text-white transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+              <div className="container mx-auto px-6 py-6">
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-4">
+                  {mobileMenuItems.map((item) => (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      variants={itemVariants}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`flex items-center space-x-4 p-4 rounded-2xl transition-all duration-300 group ${
+                        isDarkMode
+                          ? "hover:bg-gray-700/50 text-gray-300 hover:text-white"
+                          : "hover:bg-gray-100/50 text-gray-600 hover:text-gray-900"
+                      }`}
+                      whileHover={{ scale: 1.02, x: 10 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                          isDarkMode
+                            ? "bg-gray-700/50 group-hover:bg-blue-600/20"
+                            : "bg-gray-200/50 group-hover:bg-blue-100/50"
+                        }`}
+                      >
+                        <item.icon className="w-6 h-6 text-blue-500" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-lg">{item.label}</div>
+                        <div className={`text-sm ${themeClasses.textMuted}`}>
+                          {item.label === "Home" && "Back to top"}
+                          {item.label === "Features" && "See what we offer"}
+                          {item.label === "Pricing" && "Choose your plan"}
+                          {item.label === "API" && "Developer resources"}
+                          {item.label === "About" && "Learn more about us"}
+                        </div>
+                      </div>
+                    </motion.a>
+                  ))}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="mt-6 pt-6 border-t border-gray-700/50 space-y-4">
+                  <Button
+                    variant="outline"
+                    className={`w-full py-3 rounded-xl font-semibold ${
+                      isDarkMode
+                        ? "border-gray-600 hover:border-blue-400 hover:bg-gray-700/50"
+                        : "border-gray-300 hover:border-blue-400 hover:bg-gray-50"
+                    }`}
                   >
-                    {item}
-                  </a>
-                ))}
+                    Sign In
+                  </Button>
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 py-3 rounded-xl font-semibold">
+                    Get Started Free
+                  </Button>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -827,8 +1726,16 @@ export default function FastOnlineConvertLanding() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 min-h-screen flex items-center">
         <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div
+            className={`absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse ${
+              isDarkMode ? "bg-blue-500/10" : "bg-blue-500/20"
+            }`}
+          />
+          <div
+            className={`absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000 ${
+              isDarkMode ? "bg-purple-500/10" : "bg-purple-500/20"
+            }`}
+          />
         </motion.div>
 
         <div className="container mx-auto relative z-10">
@@ -839,14 +1746,24 @@ export default function FastOnlineConvertLanding() {
             className="max-w-6xl mx-auto text-center"
           >
             <motion.div variants={itemVariants}>
-              <Badge className="mb-8 bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30 backdrop-blur-sm">
+              <Badge
+                className={`mb-8 backdrop-blur-sm ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border-blue-500/30"
+                    : "bg-gradient-to-r from-blue-100/80 to-purple-100/80 text-blue-700 border-blue-300/50"
+                }`}
+              >
                 <Sparkles className="w-4 h-4 mr-2" />
                 Next-Generation File Conversion
               </Badge>
             </motion.div>
 
             <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-black mb-8 leading-tight">
-              <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+              <span
+                className={`bg-gradient-to-r bg-clip-text text-transparent ${
+                  isDarkMode ? "from-white via-blue-200 to-purple-200" : "from-gray-900 via-blue-800 to-purple-800"
+                }`}
+              >
                 Convert Files
               </span>
               <br />
@@ -857,7 +1774,7 @@ export default function FastOnlineConvertLanding() {
 
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className={`text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed ${themeClasses.textSecondary}`}
             >
               Experience the future of file conversion. Powered by AI, secured by quantum encryption, and optimized for
               the modern web.
@@ -883,7 +1800,11 @@ export default function FastOnlineConvertLanding() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-2 border-gray-600 hover:border-blue-400 bg-gray-800/50 backdrop-blur-sm px-12 py-6 text-xl font-bold rounded-2xl hover:bg-gray-700/50"
+                  className={`border-2 backdrop-blur-sm px-12 py-6 text-xl font-bold rounded-2xl transition-all duration-300 ${
+                    isDarkMode
+                      ? "border-gray-600 hover:border-blue-400 bg-gray-800/50 hover:bg-gray-700/50"
+                      : "border-gray-300 hover:border-blue-400 bg-white/50 hover:bg-gray-50/50"
+                  }`}
                 >
                   <Play className="w-6 h-6 mr-3" />
                   Watch Demo
@@ -901,13 +1822,21 @@ export default function FastOnlineConvertLanding() {
                   animate={floatingAnimation}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                  <div className="relative bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 text-center">
+                  <div
+                    className={`absolute inset-0 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 ${
+                      isDarkMode
+                        ? "bg-gradient-to-r from-blue-500/10 to-purple-500/10"
+                        : "bg-gradient-to-r from-blue-500/20 to-purple-500/20"
+                    }`}
+                  />
+                  <div
+                    className={`relative backdrop-blur-sm border rounded-2xl p-6 text-center transition-all duration-300 ${themeClasses.cardBg} ${themeClasses.border}`}
+                  >
                     <stat.icon className="w-8 h-8 mx-auto mb-3 text-blue-400" />
                     <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                       {stat.number}
                     </div>
-                    <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+                    <div className={`text-sm font-medium ${themeClasses.textMuted}`}>{stat.label}</div>
                   </div>
                 </motion.div>
               ))}
@@ -921,7 +1850,7 @@ export default function FastOnlineConvertLanding() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
         >
-          <ChevronDown className="w-8 h-8 text-gray-400" />
+          <ChevronDown className={`w-8 h-8 ${themeClasses.textMuted}`} />
         </motion.div>
       </section>
 
@@ -935,10 +1864,14 @@ export default function FastOnlineConvertLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2
+              className={`text-5xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent ${
+                isDarkMode ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
               Universal Format Support
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className={`text-xl max-w-3xl mx-auto ${themeClasses.textMuted}`}>
               Convert between any file format with our advanced AI-powered engine
             </p>
           </motion.div>
@@ -957,13 +1890,15 @@ export default function FastOnlineConvertLanding() {
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${type.bgColor} rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-300`}
                 />
-                <div className="relative bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8 text-center hover:border-gray-600/50 transition-all duration-300">
+                <div
+                  className={`relative backdrop-blur-sm border rounded-3xl p-8 text-center hover:border-opacity-75 transition-all duration-300 ${themeClasses.cardBg} ${themeClasses.border}`}
+                >
                   <div
                     className={`w-20 h-20 bg-gradient-to-r ${type.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}
                   >
                     <type.icon className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">{type.name}</h3>
+                  <h3 className={`text-xl font-bold mb-4 ${themeClasses.text}`}>{type.name}</h3>
                   <div className="space-y-1">
                     {type.formats.map((format, formatIndex) => (
                       <motion.div
@@ -971,7 +1906,9 @@ export default function FastOnlineConvertLanding() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: formatIndex * 0.1 }}
-                        className="text-sm text-gray-400 bg-gray-700/50 rounded-lg px-3 py-1 inline-block mr-2 mb-2"
+                        className={`text-sm rounded-lg px-3 py-1 inline-block mr-2 mb-2 ${
+                          isDarkMode ? "text-gray-400 bg-gray-700/50" : "text-gray-600 bg-gray-100/50"
+                        }`}
                       >
                         {format}
                       </motion.div>
@@ -986,7 +1923,13 @@ export default function FastOnlineConvertLanding() {
 
       {/* Features Section */}
       <section id="features" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/10 to-purple-900/10" />
+        <div
+          className={`absolute inset-0 ${
+            isDarkMode
+              ? "bg-gradient-to-r from-blue-900/10 to-purple-900/10"
+              : "bg-gradient-to-r from-blue-50/50 to-purple-50/50"
+          }`}
+        />
         <div className="container mx-auto px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -995,10 +1938,14 @@ export default function FastOnlineConvertLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2
+              className={`text-5xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent ${
+                isDarkMode ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
               Cutting-Edge Technology
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className={`text-xl max-w-3xl mx-auto ${themeClasses.textMuted}`}>
               Built with the latest innovations in cloud computing and artificial intelligence
             </p>
           </motion.div>
@@ -1017,14 +1964,16 @@ export default function FastOnlineConvertLanding() {
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-10 rounded-3xl blur-xl group-hover:opacity-20 transition-all duration-300`}
                 />
-                <div className="relative bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-8 hover:border-gray-600/50 transition-all duration-300">
+                <div
+                  className={`relative backdrop-blur-sm border rounded-3xl p-8 hover:border-opacity-75 transition-all duration-300 ${themeClasses.cardBg} ${themeClasses.border}`}
+                >
                   <div
                     className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}
                   >
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{feature.title}</h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">{feature.description}</p>
+                  <h3 className={`text-2xl font-bold mb-4 ${themeClasses.text}`}>{feature.title}</h3>
+                  <p className={`text-lg leading-relaxed ${themeClasses.textSecondary}`}>{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -1042,10 +1991,16 @@ export default function FastOnlineConvertLanding() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2
+              className={`text-5xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent ${
+                isDarkMode ? "from-white to-gray-300" : "from-gray-900 to-gray-600"
+              }`}
+            >
               Choose Your Power Level
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">Flexible pricing that scales with your needs</p>
+            <p className={`text-xl max-w-3xl mx-auto ${themeClasses.textMuted}`}>
+              Flexible pricing that scales with your needs
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -1072,20 +2027,22 @@ export default function FastOnlineConvertLanding() {
                   className={`absolute inset-0 bg-gradient-to-r ${plan.gradient} opacity-10 rounded-3xl blur-xl group-hover:opacity-20 transition-all duration-300`}
                 />
                 <div
-                  className={`relative bg-gray-800/80 backdrop-blur-sm border-2 rounded-3xl p-8 transition-all duration-300 ${
+                  className={`relative backdrop-blur-sm border-2 rounded-3xl p-8 transition-all duration-300 ${
                     plan.popular
                       ? "border-blue-500/50 shadow-2xl shadow-blue-500/20"
-                      : "border-gray-700/50 hover:border-gray-600/50"
-                  }`}
+                      : `${themeClasses.border} hover:border-opacity-75`
+                  } ${themeClasses.cardBg}`}
                 >
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                    <p className="text-gray-400 mb-6">{plan.description}</p>
+                    <h3 className={`text-2xl font-bold mb-2 ${themeClasses.text}`}>{plan.name}</h3>
+                    <p className={`mb-6 ${themeClasses.textMuted}`}>{plan.description}</p>
                     <div className="mb-6">
                       <span className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                         {plan.price}
                       </span>
-                      {plan.period !== "contact us" && <span className="text-gray-400 ml-2">/{plan.period}</span>}
+                      {plan.period !== "contact us" && (
+                        <span className={`ml-2 ${themeClasses.textMuted}`}>/{plan.period}</span>
+                      )}
                     </div>
                   </div>
 
@@ -1099,7 +2056,7 @@ export default function FastOnlineConvertLanding() {
                         className="flex items-center"
                       >
                         <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                        <span className="text-gray-300">{feature}</span>
+                        <span className={themeClasses.textSecondary}>{feature}</span>
                       </motion.li>
                     ))}
                   </ul>
@@ -1109,7 +2066,7 @@ export default function FastOnlineConvertLanding() {
                       className={`w-full py-4 rounded-2xl font-bold text-lg transition-all duration-300 ${
                         plan.popular
                           ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/25"
-                          : "bg-gray-700 hover:bg-gray-600 text-white"
+                          : `${themeClasses.buttonSecondary} ${themeClasses.text}`
                       }`}
                     >
                       {plan.name === "Starter" ? "Get Started Free" : `Choose ${plan.name}`}
@@ -1124,10 +2081,24 @@ export default function FastOnlineConvertLanding() {
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20" />
+        <div
+          className={`absolute inset-0 ${
+            isDarkMode
+              ? "bg-gradient-to-r from-blue-600/20 to-purple-600/20"
+              : "bg-gradient-to-r from-blue-100/50 to-purple-100/50"
+          }`}
+        />
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div
+            className={`absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse ${
+              isDarkMode ? "bg-blue-500/10" : "bg-blue-500/20"
+            }`}
+          />
+          <div
+            className={`absolute bottom-0 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000 ${
+              isDarkMode ? "bg-purple-500/10" : "bg-purple-500/20"
+            }`}
+          />
         </div>
 
         <div className="container mx-auto px-6 text-center relative">
@@ -1138,8 +2109,8 @@ export default function FastOnlineConvertLanding() {
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-5xl font-bold text-white mb-8">Ready to Experience the Future?</h2>
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            <h2 className={`text-5xl font-bold mb-8 ${themeClasses.text}`}>Ready to Experience the Future?</h2>
+            <p className={`text-xl mb-12 max-w-2xl mx-auto ${themeClasses.textSecondary}`}>
               Join millions of users who have revolutionized their workflow with FastOnlineConvert
             </p>
 
@@ -1149,7 +2120,7 @@ export default function FastOnlineConvertLanding() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400 backdrop-blur-sm rounded-xl py-4 px-6 text-lg"
+                className={`backdrop-blur-sm rounded-xl py-4 px-6 text-lg border transition-all duration-300 ${themeClasses.inputBg} ${themeClasses.border} ${themeClasses.text}`}
               />
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 font-bold px-8 py-4 text-lg rounded-xl shadow-lg shadow-blue-500/25 whitespace-nowrap">
@@ -1158,13 +2129,15 @@ export default function FastOnlineConvertLanding() {
               </motion.div>
             </div>
 
-            <p className="text-gray-400 text-sm">No credit card required • 14-day free trial • Cancel anytime</p>
+            <p className={`text-sm ${themeClasses.textMuted}`}>
+              No credit card required • 14-day free trial • Cancel anytime
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-gray-800/50 py-16">
+      <footer className={`backdrop-blur-sm border-t py-16 ${themeClasses.footerBg} ${themeClasses.border}`}>
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
@@ -1179,23 +2152,35 @@ export default function FastOnlineConvertLanding() {
                   FastOnlineConvert
                 </span>
               </div>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p className={`mb-6 leading-relaxed ${themeClasses.textMuted}`}>
                 The most advanced file conversion platform on the planet. Powered by AI, secured by quantum encryption.
               </p>
               <div className="flex space-x-4">
                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
-                  <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
-                    <Users className="w-5 h-5 text-gray-400" />
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors ${
+                      isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                    }`}
+                  >
+                    <Users className={`w-5 h-5 ${themeClasses.textMuted}`} />
                   </div>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
-                  <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors">
-                    <Globe className="w-5 h-5 text-gray-400" />
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors ${
+                      isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                    }`}
+                  >
+                    <Globe className={`w-5 h-5 ${themeClasses.textMuted}`} />
                   </div>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
-                  <div className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
-                    <Shield className="w-5 h-5 text-gray-400" />
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors ${
+                      isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                    }`}
+                  >
+                    <Shield className={`w-5 h-5 ${themeClasses.textMuted}`} />
                   </div>
                 </motion.div>
               </div>
@@ -1216,13 +2201,13 @@ export default function FastOnlineConvertLanding() {
               },
             ].map((section) => (
               <div key={section.title}>
-                <h4 className="font-bold text-white mb-6">{section.title}</h4>
+                <h4 className={`font-bold mb-6 ${themeClasses.text}`}>{section.title}</h4>
                 <ul className="space-y-3">
                   {section.links.map((link) => (
                     <li key={link}>
                       <motion.a
                         href="#"
-                        className="text-gray-400 hover:text-white transition-colors relative group"
+                        className={`transition-colors relative group ${themeClasses.textMuted} hover:${themeClasses.text}`}
                         whileHover={{ x: 5 }}
                       >
                         {link}
@@ -1235,13 +2220,13 @@ export default function FastOnlineConvertLanding() {
             ))}
           </div>
 
-          <div className="border-t border-gray-800/50 pt-8 text-center">
-            <p className="text-gray-400">
+          <div className={`border-t pt-8 text-center ${themeClasses.border}`}>
+            <p className={themeClasses.textMuted}>
               &copy; {new Date().getFullYear()} FastOnlineConvert. All rights reserved. Built with ⚡ and 💜
             </p>
           </div>
         </div>
       </footer>
-    </div>
+    </motion.div>
   )
 }
