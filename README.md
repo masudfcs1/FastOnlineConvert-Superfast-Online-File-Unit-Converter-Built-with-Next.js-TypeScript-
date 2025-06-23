@@ -1,5 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FastOnlineConvert 🌟
 
+FastOnlineConvert is your go-to web tool for fast, secure conversions—whether it’s files or units—without login or ads. Just upload, convert, and download!
+
+---
+
+## Features
+
+- **File Conversion**
+  - Documents: PDF ↔️ DOCX, HTML → PDF
+  - Images: JPG, PNG, WebP, SVG
+  - Audio: MP3, WAV, OGG
+  - Video: MP4, AVI, WebM
+
+- **Unit Conversion**
+  - Length: meters, feet, inches, miles
+  - Weight: kg, lbs, ounces
+  - Temperature: °C, °F, K
+  - Data: bytes, kilobytes, megabytes, gigabytes
+
+- **Highlights**
+  - Lightning-fast conversions using WebAssembly & cloud microservices
+  - No personal data stored—uploads are auto-deleted after 1 hour
+  - Mobile-friendly, responsive UI
+  - Open‑source and community-friendly
+
+---
 ## Getting Started
 
 First, run the development server:
