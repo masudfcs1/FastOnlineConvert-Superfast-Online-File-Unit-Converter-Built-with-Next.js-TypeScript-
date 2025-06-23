@@ -1278,6 +1278,7 @@ import {
   X,
   Zap,
 } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const containerVariants = {
@@ -1539,6 +1540,7 @@ export default function FastOnlineConvertLanding() {
         transition={{ duration: 0.8, type: "spring" }}
       >
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-3">
           <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.05 }}>
             <div className="relative">
               <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -1546,10 +1548,11 @@ export default function FastOnlineConvertLanding() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-50 animate-pulse" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-2xl hidden md:block font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               FastOnlineConvert
             </span>
           </motion.div>
+        </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
             {["Features", "Pricing", "API", "About"].map((item, index) => (
@@ -1610,7 +1613,7 @@ export default function FastOnlineConvertLanding() {
               Sign In
             </Button>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25">
+              <Button className="bg-gradient-to-r hidden md:block from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25">
                 Get Started
               </Button>
             </motion.div>
